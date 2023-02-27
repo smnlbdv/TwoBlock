@@ -8,6 +8,8 @@ btnGet.addEventListener('click', getInformation)
 slearSet.addEventListener('click', clearInfo)
 
 function clearInfo () {
+
+    containerGet.classList.remove('activ')
     const massInfo = document.querySelectorAll('.info')
     massInfo.forEach(item => {
         containerGet.removeChild(item)
@@ -16,7 +18,10 @@ function clearInfo () {
 }
 
 function getInformation() {
-    fetch('https://jsonplaceholder.typicode.com/users?_limit=7')
+
+    containerGet.classList.add('activ')
+    setTimeout ( () => {
+        fetch('https://jsonplaceholder.typicode.com/users?_limit=7')
     .then ( response => {
         return response.json()
     })
@@ -33,6 +38,8 @@ function getInformation() {
         });
     })
     btnGet.setAttribute("disabled", "disabled")
+    },250)
+    
 }   
 
 function setInformation () {
